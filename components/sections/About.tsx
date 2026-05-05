@@ -1,4 +1,5 @@
 'use client'
+import { useRef, useEffect, useState } from 'react'
 
 const stats = [
   { v: '50+', l: 'Projects Built' },
@@ -17,93 +18,267 @@ const timeline = [
 ]
 
 export default function About() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const imgRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+
+  // Intersection observer for reveal animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
+      { threshold: 0.2 }
+    )
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  // Subtle parallax on mouse move
+  useEffect(() => {
+    const handleMouse = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 12
+      const y = (e.clientY / window.innerHeight - 0.5) * 12
+      setMousePos({ x, y })
+    }
+    window.addEventListener('mousemove', handleMouse)
+    return () => window.removeEventListener('mousemove', handleMouse)
+  }, [])
+
   return (
-    <section id="about" className="py-32 md:py-48 bg-white text-black">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
-        {/* Header */}
-        <div className="grid lg:grid-cols-2 gap-20 items-center mb-24">
-          <div>
-            <span className="text-[0.6rem] font-black uppercase tracking-[0.5em] text-black/30 block mb-6">
-              The Architect
-            </span>
-            <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black tracking-[-0.04em] leading-[0.9] uppercase mb-8">
-              Services that<br />
-              <span className="text-black/20">change the world.</span>
+    <section id="about" ref={sectionRef} className="py-32 md:py-48 bg-[#050505] text-white relative overflow-hidden">
+
+      {/* Ambient background glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-white/[0.02] rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-white/[0.015] rounded-full blur-[100px]" />
+      </div>
+
+      {/* Film grain overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[1] opacity-[0.04]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat',
+          backgroundSize: '200px',
+        }}
+      />
+
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16 relative z-[2]">
+
+        {/* Section label */}
+        <div
+          className="mb-20 transition-all duration-1000"
+          style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(20px)' }}
+        >
+          <span className="text-[0.6rem] font-black uppercase tracking-[0.5em] text-white/20 block">
+            The Architect
+          </span>
+        </div>
+
+        {/* Main grid */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-32">
+
+          {/* Left — text */}
+          <div
+            className="transition-all duration-1000 delay-200"
+            style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateX(0)' : 'translateX(-40px)' }}
+          >
+            <h2 className="text-[clamp(2.5rem,5.5vw,5rem)] font-black tracking-[-0.04em] leading-[0.88] uppercase mb-10">
+              Building<br />
+              <span className="text-white/15">digital</span><br />
+              powerhouses.
             </h2>
-            <p className="text-lg text-black/60 leading-relaxed font-light mb-6">
-              I'm Kasiba Shardick, a Ugandan creator based in Malaba, Kenya. My journey began at St. Patrick P/S and led through Lordsmeade Vocational and Cardinal Nsubuga SS, shaping a vision for digital empowerment.
-            </p>
-            <p className="text-lg text-black/60 leading-relaxed font-light">
-              Today, I build digital powerhouses — services that ease daily work, solve complex problems, and make life enjoyable. From SMM panels to forex automation, from device management to streaming platforms.
-            </p>
+
+            <div className="space-y-5 mb-10">
+              <p className="text-base text-white/50 leading-relaxed font-light">
+                I'm <span className="text-white font-semibold">Kagujje Dickson</span>, a Ugandan creator and builder based in East Africa. I design and ship digital products that solve real problems — from social media growth tools to AI-powered forex automation.
+              </p>
+              <p className="text-base text-white/40 leading-relaxed font-light">
+                Every project in this ecosystem is built to generate revenue, serve users at scale, and stand independently. No fluff. Just systems that work.
+              </p>
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2">
+              {['Full-Stack Dev', 'Product Builder', 'East Africa', 'AI & Automation', 'Digital Media'].map(tag => (
+                <span key={tag} className="text-[0.6rem] font-semibold uppercase tracking-wider px-3 py-1.5 border border-white/10 text-white/40 rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Profile image */}
-          <div className="relative">
-            <div className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-full shadow-[0_0_80px_rgba(0,0,0,0.15)]">
+          {/* Right — cinematic profile photo */}
+          <div
+            className="relative flex justify-center lg:justify-end transition-all duration-1000 delay-400"
+            style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateX(0)' : 'translateX(40px)' }}
+          >
+            {/* Outer glow ring */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div
+                className="w-[420px] h-[420px] rounded-full border border-white/5"
+                style={{
+                  transform: `translate(${mousePos.x * 0.3}px, ${mousePos.y * 0.3}px)`,
+                  transition: 'transform 0.8s cubic-bezier(0.16,1,0.3,1)',
+                  boxShadow: '0 0 80px rgba(255,255,255,0.03)',
+                }}
+              />
+            </div>
+
+            {/* Photo container */}
+            <div
+              ref={imgRef}
+              className="relative w-[340px] h-[420px] md:w-[380px] md:h-[480px] overflow-hidden"
+              style={{
+                transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)`,
+                transition: 'transform 0.6s cubic-bezier(0.16,1,0.3,1)',
+                clipPath: 'polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%)',
+              }}
+            >
+              {/* The photo */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/profile.jpg"
-                alt="Kasiba Shardick"
-                className="w-full h-full object-cover scale-110"
+                alt="Kagujje Dickson"
+                className="w-full h-full object-cover object-top"
                 onError={(e) => {
-                  // Fallback if profile.jpg not uploaded yet
                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'
                 }}
                 style={{
-                  maskImage: 'radial-gradient(circle, black 40%, transparent 80%)',
-                  WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 80%)',
+                  transform: `scale(1.08) translate(${mousePos.x * -0.2}px, ${mousePos.y * -0.2}px)`,
+                  transition: 'transform 0.8s cubic-bezier(0.16,1,0.3,1)',
+                  filter: 'contrast(1.05) brightness(0.95)',
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center w-full">
-                <div className="text-sm font-black uppercase tracking-[0.3em] text-white drop-shadow-lg">Kasiba Shardick</div>
-                <div className="text-[0.6rem] font-light uppercase tracking-[0.2em] text-white/60 mt-1">Founder & Creator</div>
+
+              {/* Cinematic color grade — dark vignette */}
+              <div className="absolute inset-0"
+                style={{
+                  background: 'radial-gradient(ellipse at center, transparent 40%, rgba(5,5,5,0.6) 100%)',
+                }}
+              />
+
+              {/* Bottom gradient */}
+              <div className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(to top, rgba(5,5,5,0.8) 0%, rgba(5,5,5,0.2) 40%, transparent 70%)',
+                }}
+              />
+
+              {/* Left edge shadow */}
+              <div className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(to right, rgba(5,5,5,0.3) 0%, transparent 30%)',
+                }}
+              />
+
+              {/* Cinematic horizontal scan lines */}
+              <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                style={{
+                  backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.5) 2px, rgba(255,255,255,0.5) 3px)',
+                  backgroundSize: '100% 3px',
+                }}
+              />
+
+              {/* Film grain on photo */}
+              <div className="absolute inset-0 pointer-events-none opacity-[0.06]"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")`,
+                  backgroundSize: '150px',
+                }}
+              />
+
+              {/* Name overlay at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="text-[0.55rem] font-black uppercase tracking-[0.5em] text-white/40 mb-1">
+                  Founder & Creator
+                </div>
+                <div className="text-xl font-black uppercase tracking-[-0.02em] text-white">
+                  Kagujje Dickson
+                </div>
+              </div>
+
+              {/* Corner accent */}
+              <div className="absolute top-4 right-4 w-8 h-8 border-t border-r border-white/20" />
+              <div className="absolute top-4 left-4 w-8 h-8 border-t border-l border-white/10" />
+            </div>
+
+            {/* Floating stat cards */}
+            <div
+              className="absolute -left-6 top-1/3 transition-all duration-1000 delay-700"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible
+                  ? `translate(${mousePos.x * -0.8}px, ${mousePos.y * -0.8}px)`
+                  : 'translateX(-20px)',
+                transition: 'opacity 1s 0.7s, transform 0.6s cubic-bezier(0.16,1,0.3,1)',
+              }}
+            >
+              <div className="bg-[#0a0a0a] border border-white/10 rounded-2xl p-4 shadow-2xl backdrop-blur-xl">
+                <div className="text-2xl font-black text-white">6+</div>
+                <div className="text-[0.55rem] text-white/30 uppercase tracking-wider mt-0.5">Live Products</div>
               </div>
             </div>
 
-            {/* Floating stats */}
-            <div className="absolute -right-4 top-1/4 glass bg-white/80 rounded-2xl p-4 shadow-xl">
-              <div className="text-2xl font-black text-black">6+</div>
-              <div className="text-[0.6rem] text-black/50 uppercase tracking-wider">Live Products</div>
-            </div>
-            <div className="absolute -left-4 bottom-1/4 glass bg-white/80 rounded-2xl p-4 shadow-xl">
-              <div className="text-2xl font-black text-black">2026</div>
-              <div className="text-[0.6rem] text-black/50 uppercase tracking-wider">Current Year</div>
+            <div
+              className="absolute -right-4 bottom-1/3 transition-all duration-1000 delay-900"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible
+                  ? `translate(${mousePos.x * 0.8}px, ${mousePos.y * 0.8}px)`
+                  : 'translateX(20px)',
+                transition: 'opacity 1s 0.9s, transform 0.6s cubic-bezier(0.16,1,0.3,1)',
+              }}
+            >
+              <div className="bg-[#0a0a0a] border border-white/10 rounded-2xl p-4 shadow-2xl backdrop-blur-xl">
+                <div className="text-2xl font-black text-white">2026</div>
+                <div className="text-[0.55rem] text-white/30 uppercase tracking-wider mt-0.5">Building Now</div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-16 border-y border-black/10 mb-20">
-          {stats.map(s => (
-            <div key={s.l}>
-              <div className="text-4xl md:text-5xl font-black tracking-tighter text-black">{s.v}</div>
-              <div className="text-[0.6rem] font-black uppercase tracking-[0.2em] text-black/30 mt-2">{s.l}</div>
+        {/* Stats row */}
+        <div
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 py-16 border-y border-white/5 mb-24 transition-all duration-1000 delay-500"
+          style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)' }}
+        >
+          {stats.map((s, i) => (
+            <div
+              key={s.l}
+              className="transition-all duration-700"
+              style={{ transitionDelay: `${600 + i * 100}ms`, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(20px)' }}
+            >
+              <div className="text-4xl md:text-5xl font-black tracking-tighter text-white">{s.v}</div>
+              <div className="text-[0.6rem] font-black uppercase tracking-[0.2em] text-white/20 mt-2">{s.l}</div>
             </div>
           ))}
         </div>
 
         {/* Timeline */}
-        <div>
-          <span className="text-[0.6rem] font-black uppercase tracking-[0.5em] text-black/30 block mb-12">Journey</span>
+        <div
+          className="transition-all duration-1000 delay-700"
+          style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)' }}
+        >
+          <span className="text-[0.6rem] font-black uppercase tracking-[0.5em] text-white/20 block mb-12">Journey</span>
           <div className="relative">
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[1px] bg-black/10" />
+            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/5" />
             {timeline.map((item, i) => (
               <div
                 key={item.year}
                 className={`relative flex items-center mb-10 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
               >
                 <div className={`w-full md:w-1/2 pl-8 md:pl-0 ${i % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
-                  <span className="text-[0.6rem] tracking-widest text-black/30 font-black">{item.year}</span>
-                  <h3 className="text-lg font-black text-black mt-1">{item.title}</h3>
-                  <p className="text-sm text-black/50 mt-1">{item.desc}</p>
+                  <span className="text-[0.6rem] tracking-widest text-white/20 font-black">{item.year}</span>
+                  <h3 className="text-base font-black text-white mt-1">{item.title}</h3>
+                  <p className="text-sm text-white/30 mt-1">{item.desc}</p>
                 </div>
-                <div className="absolute left-0 md:left-1/2 w-3 h-3 bg-black rounded-full -translate-x-1/2 border-2 border-white" />
+                <div className="absolute left-0 md:left-1/2 w-2 h-2 bg-white/40 rounded-full -translate-x-1/2 border border-white/10" />
               </div>
             ))}
           </div>
         </div>
+
       </div>
     </section>
   )

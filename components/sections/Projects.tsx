@@ -45,8 +45,8 @@ const projects = [
     status: 'Live',
     year: '2024',
     color: '#8b5cf6',
-    earn: 'Resell to schools & businesses',
-    stats: [{ v: '10K+', l: 'Devices' }, { v: 'Real-time', l: 'Monitor' }, { v: 'B2B', l: 'Resellable' }],
+    earn: 'Enterprise device management',
+    stats: [{ v: '10K+', l: 'Devices' }, { v: 'Real-time', l: 'Monitor' }, { v: 'B2B', l: 'Focus' }],
   },
 ]
 
@@ -62,15 +62,15 @@ export default function Projects() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24">
           <div>
             <span className="text-[0.55rem] font-black uppercase tracking-[0.5em] text-white/25 block mb-5">
-              What You Can Use
+              Selected Work
             </span>
             <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-black tracking-[-0.04em] leading-[0.88] uppercase">
-              Tools That<br />
-              <span className="text-white/15">Make You Money</span>
+              Our<br />
+              <span className="text-white/15">Projects</span>
             </h2>
           </div>
           <p className="text-white/35 max-w-xs text-sm leading-relaxed font-light">
-            Every product is built to put money in your pocket — whether you use it yourself or resell it to clients.
+            Each product solves a real problem in East Africa. Built to scale, generate revenue, and serve users independently.
           </p>
         </div>
 

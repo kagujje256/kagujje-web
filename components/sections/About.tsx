@@ -2,10 +2,10 @@
 import { useRef, useEffect, useState } from 'react'
 
 const stats = [
-  { v: '50+', l: 'Projects Built' },
-  { v: '2020', l: 'Founded' },
+  { v: '50+', l: 'Projects Shipped' },
+  { v: '2020', l: 'Started' },
   { v: '6+', l: 'Products Live' },
-  { v: '100%', l: 'Commitment' },
+  { v: 'EA', l: 'East Africa' },
 ]
 
 export default function About() {

@@ -1,48 +1,47 @@
 'use client'
 
-// Resellable / earnable services — user-benefit framing
 const services = [
   {
-    n: 'Resell SMM Services',
-    d: 'Buy at wholesale, sell to clients at 3–5x. Businesses, influencers, and creators need followers every day.',
+    n: 'Social Media Growth',
+    d: 'Buy TikTok views, Instagram followers, YouTube subscribers and 260+ services at wholesale prices. Resell to clients at 3–5x markup.',
     image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=80&auto=format&fit=crop',
     color: '#22c55e',
-    earn: 'Earn 3–5x per order',
+    earn: 'Resell at 3–5x markup',
   },
   {
-    n: 'Automate Forex Trading',
-    d: 'Set up a GRID or DCA bot on your broker. It trades while you sleep — no screen time required.',
+    n: 'Forex Automation',
+    d: 'Connect your broker, choose GRID or DCA strategy, and let AI trade for you 24/5. Free $10,000 demo account — no credit card needed.',
     image: 'https://images.unsplash.com/photo-1611974789855-0c3b8f06e1b9?w=400&q=80&auto=format&fit=crop',
     color: '#3b82f6',
     earn: 'Trade 24/5 hands-free',
   },
   {
-    n: 'Daily Task Earnings',
-    d: 'Watch videos, answer quizzes, share posts. Each task pays UGX directly to your wallet — withdraw anytime.',
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&q=80&auto=format&fit=crop',
-    color: '#f59e0b',
-    earn: 'UGX 200–12,000 per task',
-  },
-  {
-    n: 'Referral Income',
-    d: 'Share your link. Earn a % of every friend\'s entry fee — forever. Top referrers pull UGX 200,000+/month.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80&auto=format&fit=crop',
-    color: '#ec4899',
-    earn: 'Passive income forever',
-  },
-  {
-    n: 'Resell MDM to Schools',
-    d: 'Schools and businesses need device management. Resell MDM28 subscriptions and earn recurring monthly income.',
+    n: 'Device Management',
+    d: 'Remote lock, app management, and real-time monitoring for Android fleets. Built for schools, businesses, and organizations.',
     image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80&auto=format&fit=crop',
     color: '#8b5cf6',
-    earn: 'Recurring monthly revenue',
+    earn: 'Manage 10,000+ devices',
   },
   {
-    n: 'Build Your Audience',
-    d: 'Grow your TikTok, Instagram, or YouTube fast. More followers = more brand deals, more sales, more income.',
+    n: 'Film & Content',
+    d: 'Cinematic storytelling from script to screen. Professional video production for brands, events, and digital platforms.',
+    image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&q=80&auto=format&fit=crop',
+    color: '#f59e0b',
+    earn: 'Professional production',
+  },
+  {
+    n: 'Tech Development',
+    d: 'Custom software, APIs, and web platforms built to scale. From idea to production-ready product.',
+    image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&q=80&auto=format&fit=crop',
+    color: '#ec4899',
+    earn: 'End-to-end delivery',
+  },
+  {
+    n: 'Digital Marketing',
+    d: 'Performance marketing that converts. Strategic brand amplification across social media, search, and paid channels.',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80&auto=format&fit=crop',
     color: '#14b8a6',
-    earn: 'More reach = more revenue',
+    earn: 'Measurable ROI',
   },
 ]
 
@@ -57,15 +56,15 @@ export default function Services() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
             <span className="text-[0.55rem] font-black uppercase tracking-[0.5em] text-white/25 block mb-5">
-              How You Earn
+              Core Capabilities
             </span>
             <h2 className="text-[clamp(2.5rem,6vw,5.5rem)] font-black tracking-[-0.04em] leading-[0.88] uppercase">
-              Six Ways<br />
-              <span className="text-white/15">To Make Money</span>
+              What<br />
+              <span className="text-white/15">We Do</span>
             </h2>
           </div>
           <p className="text-white/35 max-w-xs text-sm leading-relaxed font-light">
-            Use the tools yourself or resell them to clients. Every product in this ecosystem has a clear path to income.
+            Six disciplines. Every one built to generate real, measurable value for clients and users across East Africa.
           </p>
         </div>
       </div>
@@ -89,7 +88,6 @@ export default function Services() {
                   draggable={false}
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,5,5,0.75) 0%, transparent 55%)' }} />
-                {/* Earn badge */}
                 <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
                   <div className="w-1.5 h-1.5 rounded-full" style={{ background: s.color }} />
                   <span className="text-[0.5rem] font-black uppercase tracking-wider" style={{ color: s.color }}>

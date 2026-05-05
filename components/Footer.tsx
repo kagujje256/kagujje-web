@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
 const ecosystem = [
-  { label: 'SMM28', href: 'https://smm.kagujje.com', desc: 'Buy & Resell Social Media Services' },
+  { label: 'SMM28', href: 'https://smm.kagujje.com', desc: 'Social Media Marketing Panel' },
   { label: 'AutoForex', href: 'https://autoforex.kagujje.com', desc: 'Automated Forex Trading Bots' },
-  { label: 'Daily Quizz', href: 'https://daily.qzz.io', desc: 'Earn UGX Daily — Withdraw to MoMo' },
-  { label: 'MDM28', href: 'https://mdm.kagujje.com', desc: 'Device Management for Businesses' },
+  { label: 'MDM28', href: 'https://mdm.kagujje.com', desc: 'Mobile Device Management' },
+  { label: 'UG Movies', href: 'https://movies.kagujje.com', desc: 'Ugandan Streaming Platform' },
 ]
 
 const social = [
@@ -74,11 +74,7 @@ export default function Footer() {
           style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
         >
           <div className="text-[0.55rem] uppercase tracking-widest text-white/15">
-            2026 Kagujje Digital. All Rights Reserved.
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500" style={{ animation: 'pulse 3s ease-in-out infinite' }} />
-            <span className="text-[0.55rem] uppercase tracking-widest text-white/20">All Systems Operational</span>
+            © 2026 Kagujje Digital. All Rights Reserved.
           </div>
           <div className="text-[0.55rem] uppercase tracking-widest text-white/15">
             Built by Kasiba Shardick

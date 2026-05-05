@@ -88,8 +88,8 @@ export default function Contact() {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-9">
               {[
-                { label: 'Your Name', key: 'name', type: 'text', placeholder: 'Kasiba Shardick' },
-                { label: 'Email Address', key: 'email', type: 'email', placeholder: 'you@example.com' },
+                { label: 'Your Name', key: 'name', type: 'text', placeholder: 'Your full name' },
+                { label: 'Email Address', key: 'email', type: 'email', placeholder: 'your@email.com' },
               ].map(field => (
                 <div key={field.key} className="group">
                   <label className="text-[0.55rem] font-black uppercase tracking-[0.3em] text-white/25 group-focus-within:text-white/60 transition-colors block mb-3">
@@ -135,7 +135,7 @@ export default function Contact() {
                   ? 'Message sent via WhatsApp'
                   : sending
                   ? 'Sending...'
-                  : <><span>Commence Project</span><ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" /></>
+                  : <><span>Send Message</span><ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" /></>
                 }
               </button>
             </form>

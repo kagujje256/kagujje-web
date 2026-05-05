@@ -185,8 +185,8 @@ export default function Hero() {
         <div key={`cta-${current}`} className="mt-10 flex items-center gap-8 fade-up pointer-events-auto" style={{ animationDelay: '0.75s' }}>
           <a
             href={slide.cta.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={slide.cta.href.startsWith('http') ? '_blank' : undefined}
+            rel={slide.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
             onMouseDown={e => e.stopPropagation()}
             className="group flex items-center gap-3 px-8 py-4 bg-white text-black text-[0.65rem] font-black uppercase tracking-[0.18em] hover:bg-white/90 transition-all"
             style={{ cursor: 'pointer' }}
@@ -195,12 +195,12 @@ export default function Hero() {
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </a>
           <a
-            href="#projects"
+            href="#about"
             onMouseDown={e => e.stopPropagation()}
             className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors"
             style={{ cursor: 'pointer' }}
           >
-            All Projects
+            About
           </a>
         </div>
       </div>

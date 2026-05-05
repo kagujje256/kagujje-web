@@ -5,7 +5,7 @@ const services = [
   {
     n: 'Resell SMM Services',
     d: 'Buy at wholesale, sell to clients at 3–5x. Businesses, influencers, and creators need followers every day.',
-    image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400&q=80&auto=format&fit=crop',
     color: '#22c55e',
     earn: 'Earn 3–5x per order',
   },
@@ -19,14 +19,14 @@ const services = [
   {
     n: 'Daily Task Earnings',
     d: 'Watch videos, answer quizzes, share posts. Each task pays UGX directly to your wallet — withdraw anytime.',
-    image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&q=80&auto=format&fit=crop',
     color: '#f59e0b',
     earn: 'UGX 200–12,000 per task',
   },
   {
     n: 'Referral Income',
     d: 'Share your link. Earn a % of every friend\'s entry fee — forever. Top referrers pull UGX 200,000+/month.',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80&auto=format&fit=crop',
     color: '#ec4899',
     earn: 'Passive income forever',
   },

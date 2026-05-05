@@ -1,18 +1,18 @@
 import Link from 'next/link'
 
 const ecosystem = [
-  { label: 'SMM28', href: 'https://smm.kagujje.com', desc: 'Social Media Panel' },
-  { label: 'AutoForex', href: 'https://autoforex.kagujje.com', desc: 'Forex Automation' },
-  { label: 'MDM28', href: 'https://mdm.kagujje.com', desc: 'Device Management' },
-  { label: 'UG Movies', href: 'https://movies.kagujje.com', desc: 'Streaming Platform' },
+  { label: 'SMM28', href: 'https://smm.kagujje.com', desc: 'Buy & Resell Social Media Services' },
+  { label: 'AutoForex', href: 'https://autoforex.kagujje.com', desc: 'Automated Forex Trading Bots' },
+  { label: 'Daily Quizz', href: 'https://daily.qzz.io', desc: 'Earn UGX Daily — Withdraw to MoMo' },
+  { label: 'MDM28', href: 'https://mdm.kagujje.com', desc: 'Device Management for Businesses' },
 ]
 
 const social = [
   { label: 'TikTok', href: 'https://tiktok.com/@kagujje.inc' },
   { label: 'Twitter', href: 'https://twitter.com/kagujje' },
   { label: 'Instagram', href: 'https://instagram.com/kagujje' },
-  { label: 'GitHub', href: 'https://github.com/kagujje256' },
   { label: 'Telegram', href: 'https://t.me/dicksonkagujje' },
+  { label: 'WhatsApp', href: 'https://wa.me/254103022997' },
 ]
 
 export default function Footer() {
@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="text-xl font-black tracking-[-0.04em] mb-6 text-white">KAGUJJE</div>
             <p className="text-sm text-white/30 leading-relaxed max-w-sm mb-8 font-light">
-              Transforming ideas into high-performing digital products. Content, automation, and platforms that deliver real results.
+              Tools that grow your audience, automate your trading, and put real money in your pocket. Use them yourself or resell to clients.
             </p>
             <div className="space-y-2">
               <a href="mailto:dicksonkagujje@gmail.com"

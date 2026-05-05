@@ -14,7 +14,7 @@ const slides = [
     topic: 'Finance',
     headline: ['Financial', 'Freedom', 'Decoded'],
     sub: 'Expert forex automation and crypto solutions for wealth building.',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c3b8f06e1b9?w=1920&q=85&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1611974789855-0c3b8f06e1b9?w=1920&q=85&auto=format&fit=crop',
     accent: '#22c55e',
   },
   {

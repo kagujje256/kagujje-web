@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: 'Kagujje — Digital Excellence',
   description: 'Kagujje is a multidisciplinary digital ecosystem. SMM services, automated forex trading, mobile device management, and more. Built by Kasiba Shardick.',
   keywords: 'Kagujje, SMM panel, forex trading, MDM, Uganda, digital services, Kasiba Shardick',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: 'Kagujje — Digital Excellence',
     description: 'Services that ease daily work, solve problems, and make life enjoyable.',

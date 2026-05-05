@@ -29,47 +29,60 @@ export default function Nav({ onSearchOpen }: NavProps) {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-[#050505]/95 backdrop-blur-xl border-b border-white/5 py-4'
-            : 'bg-transparent py-7'
+            ? 'py-4 border-b border-white/[0.06]'
+            : 'py-7'
         }`}
+        style={{
+          background: scrolled ? 'rgba(5,5,5,0.96)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        }}
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between">
+        <div className="max-w-[1500px] mx-auto px-6 md:px-12 flex items-center justify-between">
+
           {/* Logo */}
           <Link href="/"
-            className="text-xl font-black tracking-[-0.04em] text-white hover:text-white/70 transition-colors">
+            className="text-lg font-black tracking-[-0.04em] text-white hover:text-white/60 transition-colors duration-300">
             KAGUJJE
           </Link>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-10">
             {navLinks.map(link => (
-              <a key={link.label} href={link.href}
-                className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors duration-300">
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors duration-300"
+              >
                 {link.label}
               </a>
             ))}
           </div>
 
-          {/* Right actions */}
+          {/* Right */}
           <div className="flex items-center gap-4">
-            {/* Search */}
             <button
               onClick={onSearchOpen}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 text-white/40 hover:text-white hover:border-white/20 transition-all text-xs"
+              className="flex items-center gap-2 px-3 py-2 text-white/35 hover:text-white transition-all text-xs"
+              style={{ border: '1px solid rgba(255,255,255,0.08)' }}
             >
               <Search className="w-3.5 h-3.5" />
-              <span className="hidden md:inline">Search</span>
-              <kbd className="hidden md:inline text-[0.6rem] bg-white/5 px-1.5 py-0.5 rounded">⌘K</kbd>
+              <span className="hidden md:inline text-[0.6rem] uppercase tracking-wider">Search</span>
+              <kbd className="hidden md:inline text-[0.55rem] px-1.5 py-0.5" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                ⌘K
+              </kbd>
             </button>
 
-            {/* CTA */}
-            <a href="#contact"
-              className="hidden md:flex items-center px-6 py-2.5 bg-white text-black text-[0.7rem] font-black uppercase tracking-[0.1em] hover:bg-white/90 transition-all btn-magnetic">
+            <a
+              href="#contact"
+              className="hidden md:flex items-center px-6 py-2.5 bg-white text-black text-[0.65rem] font-black uppercase tracking-[0.12em] hover:bg-white/88 transition-all"
+            >
               Let's Talk
             </a>
 
-            {/* Mobile menu */}
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-white/60 hover:text-white">
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden text-white/50 hover:text-white transition-colors"
+            >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
@@ -78,16 +91,23 @@ export default function Nav({ onSearchOpen }: NavProps) {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-[#050505]/98 backdrop-blur-xl flex flex-col items-center justify-center gap-8">
+        <div className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8"
+          style={{ background: 'rgba(5,5,5,0.98)', backdropFilter: 'blur(20px)' }}>
           {navLinks.map(link => (
-            <a key={link.label} href={link.href}
+            <a
+              key={link.label}
+              href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="text-3xl font-black uppercase tracking-tight text-white/80 hover:text-white transition-colors">
+              className="text-3xl font-black uppercase tracking-tight text-white/70 hover:text-white transition-colors"
+            >
               {link.label}
             </a>
           ))}
-          <a href="#contact" onClick={() => setMobileOpen(false)}
-            className="mt-4 px-8 py-4 bg-white text-black font-black uppercase tracking-widest text-sm">
+          <a
+            href="#contact"
+            onClick={() => setMobileOpen(false)}
+            className="mt-4 px-8 py-4 bg-white text-black font-black uppercase tracking-widest text-sm"
+          >
             Let's Talk
           </a>
         </div>

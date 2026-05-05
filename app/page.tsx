@@ -49,7 +49,7 @@ export default function Home() {
             >
               KAGUJJE
             </div>
-            <div className="text-[0.6rem] uppercase tracking-[0.6em] text-white/30 mt-3">
+            <div className="text-[0.55rem] uppercase tracking-[0.6em] text-white/25 mt-3">
               Digital Excellence
             </div>
             {/* Loading bar */}
